@@ -126,7 +126,7 @@ namespace Microsoft.Build.Shared
         }
 
         /// <summary>
-        /// IPooledObjectPolicy used by <cref="s_arrayListPool"/>.
+        /// IPooledObjectPolicy used by <cref see="s_arrayListPool"/>.
         /// </summary>
         private class PooledObjectPolicy : IPooledObjectPolicy<List<ReadOnlyMemory<char>>>
         {
