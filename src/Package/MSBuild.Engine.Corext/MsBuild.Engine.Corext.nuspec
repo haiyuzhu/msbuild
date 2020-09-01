@@ -32,6 +32,7 @@
     <file src="$X86BinPath$/System.Memory.dll" target="v15.0/bin" />
     <file src="$X86BinPath$/System.Text.Json.dll" target="v15.0/bin" />
     <file src="$X86BinPath$/Microsoft.Bcl.AsyncInterfaces.dll" target="v15.0/bin" />
+    <file src="$X86BinPath$/Microsoft.Extensions.ObjectPool.dll" target="v15.0/bin" />
     <file src="$X86BinPath$/System.Buffers.dll" target="v15.0/bin" />
     <file src="$X86BinPath$/System.Text.Encodings.Web.dll" target="v15.0/bin" />
     <file src="$X86BinPath$/System.Threading.Tasks.Extensions.dll" target="v15.0/bin" />
@@ -86,6 +87,7 @@
     <file src="$X86BinPath$/System.Memory.dll" target="v15.0/bin/amd64" />
     <file src="$X86BinPath$/System.Text.Json.dll" target="v15.0/bin/amd64" />
     <file src="$X86BinPath$/Microsoft.Bcl.AsyncInterfaces.dll" target="v15.0/bin/amd64" />
+    <file src="$X86BinPath$/Microsoft.Extensions.ObjectPool.dll" target="v15.0/bin/amd64" />
     <file src="$X86BinPath$/System.Buffers.dll" target="v15.0/bin/amd64" />
     <file src="$X86BinPath$/System.Text.Encodings.Web.dll" target="v15.0/bin/amd64" />
     <file src="$X86BinPath$/System.Threading.Tasks.Extensions.dll" target="v15.0/bin/amd64" />
