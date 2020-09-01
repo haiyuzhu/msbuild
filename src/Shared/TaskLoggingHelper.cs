@@ -555,7 +555,6 @@ namespace Microsoft.Build.Utilities
                 ErrorUtilities.ThrowInvalidOperation("LoggingBeforeTaskInitialization", e.Message);
             }
 
-
             BuildEngine.LogMessageEvent(e);
         }
 
@@ -572,7 +571,7 @@ namespace Microsoft.Build.Utilities
         /// <exception cref="ArgumentNullException">Thrown when <c>message</c> is null.</exception>
         public void LogError(string message, params object[] messageArgs)
         {
-            LogError(null, null, null, null, 0, 0, 0, 0, message, null, messageArgs);
+            LogError(null, null, null, null, null, 0, 0, 0, 0, message, messageArgs);
         }
 
         /// <summary>
@@ -604,7 +603,7 @@ namespace Microsoft.Build.Utilities
             params object[] messageArgs
         )
         {
-            LogError(subcategory, errorCode, helpKeyword, file, lineNumber, columnNumber, endLineNumber, endColumnNumber, message, null, messageArgs);
+            LogError(subcategory, errorCode, helpKeyword, null, file, lineNumber, columnNumber, endLineNumber, endColumnNumber, message, messageArgs);
         }
 
         /// <summary>
@@ -628,13 +627,13 @@ namespace Microsoft.Build.Utilities
             string subcategory,
             string errorCode,
             string helpKeyword,
+            string helpLink,
             string file,
             int lineNumber,
             int columnNumber,
             int endLineNumber,
             int endColumnNumber,
             string message,
-            string helpLink,
             params object[] messageArgs
         )
         {
@@ -737,7 +736,7 @@ namespace Microsoft.Build.Utilities
             string messageCode;
             string throwAwayMessageBody = ResourceUtilities.ExtractMessageCode(true /* only msbuild codes */, FormatResourceString(messageResourceName, messageArgs), out messageCode);
 
-            ErrorUtilities.VerifyThrow(messageCode == null || messageCode.Length == 0, "Called LogErrorFromResources instead of LogErrorWithCodeFromResources, but message '" + throwAwayMessageBody + "' does have an error code '" + messageCode + "'");
+            ErrorUtilities.VerifyThrow(string.IsNullOrEmpty(messageCode), "Called LogErrorFromResources instead of LogErrorWithCodeFromResources, but message '" + throwAwayMessageBody + "' does have an error code '" + messageCode + "'");
 #endif
 
             LogError
@@ -1314,7 +1313,7 @@ namespace Microsoft.Build.Utilities
             bool isError = false;
             CanonicalError.Parts messageParts = CanonicalError.Parse(lineOfText);
 
-            if (null == messageParts)
+            if (messageParts == null)
             {
                 // Line was not recognized as a canonical error. Log it as a message.
                 LogMessage(messageImportance, lineOfText);
@@ -1325,7 +1324,7 @@ namespace Microsoft.Build.Utilities
                 //  Log it as a warning or error.
                 string origin = messageParts.origin;
 
-                if ((origin == null) || (origin.Length == 0))
+                if (string.IsNullOrEmpty(origin))
                 {
                     // Use the task class name as the origin, if none specified.
                     origin = TaskNameUpperCase;

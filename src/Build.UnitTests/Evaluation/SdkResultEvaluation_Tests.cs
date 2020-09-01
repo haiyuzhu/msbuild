@@ -348,9 +348,8 @@ namespace Microsoft.Build.UnitTests.Evaluation
         [Fact]
         public void SdkResolverCanReturnTheSamePropertiesAndItemsMultipleTimes()
         {
-            Dictionary<string, string> propertiesToAdd = null;
-            Dictionary<string, SdkResultItem> itemsToAdd = null;
-
+            Dictionary<string, string> propertiesToAdd;
+            Dictionary<string, SdkResultItem> itemsToAdd;
             CreateMockSdkResultPropertiesAndItems(out propertiesToAdd, out itemsToAdd);
 
             var projectOptions = SdkUtilities.CreateProjectOptionsWithResolver(new SdkUtilities.ConfigurableMockSdkResolver(
@@ -468,7 +467,6 @@ namespace Microsoft.Build.UnitTests.Evaluation
 
             _logger.ErrorCount.ShouldBe(0);
             _logger.WarningCount.ShouldBe(0);
-
         }
 
         public void Dispose()
